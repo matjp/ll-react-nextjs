@@ -11,15 +11,20 @@ export default function BookGrid( { books } : BookGridProps ) {
     { books.map((book: any) => {
       const base64String = btoa(String.fromCharCode(...new Uint8Array(book.cover_image)));
       return (
-        <div style={{ width: '242px' }} key={book.title}>
-          <Image
-            src={`data:image/avif;base64,${base64String}`}
-            width="242"
-            height="363"
-            alt={book.title}
-          />
-          <div className="text-center">{book.title}</div>
-          <div className="text-center">{book.author}</div>
+        <div key={book.title}>
+          <div className="p-2 flex justify-center">
+            <Image className="items-center"
+              src={`data:image/avif;base64,${base64String}`}
+              width="242"
+              height="363"
+              alt={book.title}
+            />
+          </div>
+          <div className="p-2 text-center">{book.title}</div>
+          <div className="p-2 text-center">{book.author}</div>
+          <div className="p-2 flex justify-center">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded items-center">Borrow</button>
+          </div>
         </div>
       )
     })}
