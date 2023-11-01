@@ -1,14 +1,8 @@
 'use client'
 
-import Image from 'next/image'
 import { useState } from 'react';
-
-export interface Book {
-  title: string;
-  author: string;
-  cover_image: string;
-  borrowed: number;
-}
+import Book from '../model/Book';
+import Image from 'next/image'
 
 interface BookProps {
   book: Book

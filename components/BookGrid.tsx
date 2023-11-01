@@ -1,4 +1,5 @@
-import BookItem, { Book } from "./BookItem";
+import Book from '../model/Book';
+import BookItem from "./BookItem";
 
 interface BookGridProps {
   books: Book[]
