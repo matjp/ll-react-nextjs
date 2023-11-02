@@ -1,12 +1,15 @@
 import Book from '../model/Book';
 import Image from 'next/image'
-import updateBook from '../actions/updateBook'
+import BookForm from './BookForm';
+import borrowBook from '../actions/borrowBook'
 
 interface BookProps {
-  book: Book
+  book: Book;
+  formName: string;
+  formAction: (formData: FormData) => Promise<void>;
 }
 
-export default function BookItem( { book } : BookProps ) {
+export default function BookItem( { book, formName, formAction } : BookProps ) {
   return (
     <>
       <div className="p-2 flex justify-center">
@@ -19,10 +22,7 @@ export default function BookItem( { book } : BookProps ) {
       </div>
       <div className="p-2 text-center">{book.title}</div>
       <div className="p-2 text-center">{book.author}</div>
-      <form action={updateBook} className="p-2 flex justify-center">
-        <button name="borrow" value={book.title} disabled={book.borrowed === 1 ? true : false}
-          className="bg-blue-500 hover:bg-blue-700 disabled:bg-gray-500 text-white font-bold py-2 px-4 rounded items-center">Borrow</button>
-      </form>
+      <BookForm formAction={formAction} formName={formName} formValue={book.title} disabled={formName === 'borrow' ? book.borrowed : !book.borrowed}></BookForm>
     </>
   )
 }

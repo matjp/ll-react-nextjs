@@ -1,4 +1,5 @@
 import BookGrid from "@/components/BookGrid";
+import borrowBook from "@/actions/borrowBook";
 
 async function getData() {
   const mysql = require('mysql2/promise');
@@ -11,6 +12,6 @@ export default async function Page() {
   const books = await getData();
 
   return(
-    <BookGrid books={books}></BookGrid>
+    <BookGrid books={books} formName='borrow' formAction={borrowBook}></BookGrid>
   )
 }
