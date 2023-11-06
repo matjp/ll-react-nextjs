@@ -1,7 +1,6 @@
 import Book from '../model/Book';
 import Image from 'next/image'
 import BookForm from './BookForm';
-import borrowBook from '../actions/borrowBook'
 
 interface BookProps {
   book: Book;
@@ -22,7 +21,7 @@ export default function BookItem( { book, formName, formAction } : BookProps ) {
       </div>
       <div className="p-2 text-center">{book.title}</div>
       <div className="p-2 text-center">{book.author}</div>
-      <BookForm formAction={formAction} formName={formName} formValue={book.title} disabled={formName === 'borrow' ? book.borrowed : !book.borrowed}></BookForm>
+      <BookForm formAction={formAction} formName={formName} formValue={book.title} disabled={formName === 'borrow' ? book.borrowed : !book.borrowed }></BookForm>
     </>
   )
 }
