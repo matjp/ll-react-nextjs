@@ -6,7 +6,8 @@ export const inter = Inter({
 })
  
 export const league_spartan = League_Spartan({
+  weight: '700',
   subsets: ['latin'],
-  display: 'swap',
-  weight: '400'
+  style: 'normal',
+  display: 'swap'
 })
