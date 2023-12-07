@@ -1,17 +1,21 @@
+version: '3'
+
 services:
-  web:
-    build: .  
-    depends_on:
-      db:
-        condition: service_started
-        restart: true
+  next-app:
+    container_name: next-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENV_VARIABLE: ${ENV_VARIABLE}
+        NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+    restart: always
     ports:
-      - 8080:8080
+      - 3000:3000
+
   db:
     image: matjpdh/lldb:1.0
     restart: always
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: password
-    ports:
-      - 3306:3306

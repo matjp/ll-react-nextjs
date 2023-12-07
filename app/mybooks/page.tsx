@@ -3,7 +3,7 @@ import returnBook from "@/actions/returnBook";
 
 async function getData() {
   const mysql = require('mysql2/promise');
-  const connection = await mysql.createConnection({host:'localhost', user: 'api', password: 'password', database: 'library'});
+  const connection = await mysql.createConnection({host:process.env.DB_HOST, user:process.env.DB_USER, password:process.env.DB_PASS, database: 'library'});
   const [rows, fields] = await connection.execute('SELECT title, author, TO_BASE64(cover_image) as cover_image, borrowed FROM book where borrowed=1 ORDER BY title'); 
   return rows;
 }
