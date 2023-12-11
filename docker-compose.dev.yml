@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  next-app:
+    container_name: next-app
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+
+    # Set envrionment variables based on the .env file
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    restart: always
+    ports:
+      - 3000:3000
+
+  db:
+    image: matjpdh/lldb:1.0
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: password
